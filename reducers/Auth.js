@@ -3,7 +3,7 @@
 const initialState = {
     isLogedin : false,
     errors : '',
-    user : {}
+    user : {'asdf':'asf'}
 }
 
 export default Auth = (state = initialState, action) => {

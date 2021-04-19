@@ -3,9 +3,9 @@ import {View, StyleSheet, FlatList, TouchableOpacity, StatusBar, ScrollView, Ima
 import {List, ListItem, Text, Left, Right, Icon, Separator, Item, Input,  Button, 
     Card, Thumbnail, Container, CardItem, Body } from 'native-base';
 
+import { useSelector } from "react-redux";
 
-import d1 from '../assets/d1.jpeg';
-import d2 from '../assets/d2.jpeg';
+import d1 from '../assets/profile.jpg';
 
 import FooterC from './Footer';
 import bgImg from '../assets/border.png';
@@ -24,8 +24,10 @@ import {userLogout} from '../actions'
 
 const Profile = function(props, navigation) {
 
-    const profile = props.profile;
-    console.log(profile);
+    const profile = useSelector(state => state.Auth.user);
+
+
+    //console.log(profile);
  
 
     return (
@@ -72,10 +74,16 @@ flexDirection:'column'
 }}>Member Profile</Text>
 
 
-<Thumbnail style={css.cat} source={d2} />
+<Thumbnail style={css.cat} source={d1} />
 
-<Text style={css.t2}> ss</Text>
-<Text note>Breackfast, Omani Food</Text>
+<Text style={css.t3}> {profile.name}</Text>
+<Text note>{profile.position}</Text>
+
+
+<Text style={css.t2}>Email ID {profile.email}</Text>
+<Text style={css.t2}>Phone {profile.phone}</Text>
+<Text style={css.t2}>ID : {profile.memberid}</Text>
+<Text style={css.t2}>Account Balance 0</Text>
 
 
 </View>
@@ -114,19 +122,9 @@ flexDirection:'column'
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        logout : () => dispatch(userLogout())
-    }
-}
 
-const mapStateToProps = (state) => {
-    return {
-        profile : state.user
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default Profile;
 
 const css = StyleSheet.create({
     frame : {
@@ -152,9 +150,12 @@ const css = StyleSheet.create({
           width:90, height:90, borderRadius:90, marginLeft:8, marginRight:8
       },
       t2:{
-          width:"100%", alignItems:"center", fontSize:17, textAlign:"center", fontWeight:'bold',
-          color:"#444", marginTop:5
-      },
+        width:"100%", alignItems:"center", fontSize:17, textAlign:"center", fontWeight:'bold',
+        color:"#444", marginTop:5
+    },t3:{
+        width:"100%", alignItems:"center", fontSize:19, textAlign:"center", fontWeight:'bold',
+        color:"#444", marginTop:5
+    },
       box :{
         display:"flex", flexDirection:"row", 
         alignItems:"flex-start", justifyContent:"center", height:"auto"

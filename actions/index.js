@@ -25,8 +25,9 @@ export const getUserFetch = () => {
                     dispatch(loaded());
                 }
                 else if(res.data){
+                    console.log(res.data);
     
-                    dispatch(userLogin(res.data.user));
+                    dispatch(userLogin(res.data));
                     dispatch(loaded());
                 }
             })
@@ -55,7 +56,7 @@ export const createAuth = (user) => {
         .then(res => {
 
             storeToken('jwtoken', res.data.data.token);
-            dispatch(userLogin(res.data.user));
+            dispatch(userLogin(res.data.data.user));
             dispatch(loaded());
         })
         .catch(err => {
@@ -152,7 +153,7 @@ export const actRegister = (user) => {
                     // }))
 
                     storeToken('jwtoken', res.data.data.token);
-                    dispatch(userLogin());
+                    dispatch(userLogin(res.data.data.user));
                     dispatch(loaded());
                 } 
             })
