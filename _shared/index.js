@@ -33,4 +33,6 @@ export const getToken = async (key) => {
 //         }
 
 export const apiserv = 'https://restourent.signcard.net/api';
-//export const apiserv = 'http://signcard.test/api';
+export const imgpath = 'https://restourent.signcard.net/storage/cover/';
+
+//export const apiserv = 'http://restoapp.link/api';

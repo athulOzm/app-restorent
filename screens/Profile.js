@@ -116,7 +116,7 @@ flexDirection:'column'
             </ScrollView>
 
 
-            <FooterC navigation={props.navigation} />
+            <FooterC navigation={props.navigation} act="profile"/>
         </React.Fragment>
         
     )

@@ -84,7 +84,7 @@ class App extends React.Component{
             },
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
             headerStyle:{
-              backgroundColor:"#454daf",
+              backgroundColor:"#f98b2a",
             },
             headerTintColor: '#fff',
             headerTitleStyle: {

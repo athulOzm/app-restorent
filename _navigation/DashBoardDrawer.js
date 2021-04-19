@@ -14,10 +14,13 @@ const Drawer = createDrawerNavigator();
 export default DashBoardDrawer = () => {
 
   return(
-    <Drawer.Navigator
+    <Drawer.Navigator 
+    
       drawerStyle={{
-        backgroundColor: '#e7e7e7',
+        backgroundColor: '#fff', headerTintColor: '#fff'
+        
       }}
+      
       drawerContent={props => <CustomDrawerContent {...props} />}
       >
 

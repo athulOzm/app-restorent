@@ -25,9 +25,10 @@ export const getUserFetch = () => {
                     dispatch(loaded());
                 }
                 else if(res.data){
-                    console.log(res.data);
+                    //console.log(res.data);
     
                     dispatch(userLogin(res.data));
+                    dispatch(fetchInit());
                     dispatch(loaded());
                 }
             })
@@ -56,6 +57,7 @@ export const createAuth = (user) => {
         .then(res => {
 
             storeToken('jwtoken', res.data.data.token);
+            dispatch(fetchInit());
             dispatch(userLogin(res.data.data.user));
             dispatch(loaded());
         })
@@ -120,10 +122,31 @@ const loaded = () => {
 
 //userlogin
 const userLogin = (user) => {
+
     return {type:'USER_LOGIN', payload:user}
 }
 
+//fetch Init
+const fetchInit = () => {
+    return (dispatch) => {
+        getToken('jwtoken').then(res => {
 
+            const headers = {
+                'content-type'  :   'Application/json',
+                'Authorization' :   `Bearer ${res}`
+            }
+            return Axios.get(`${apiserv}/init`, {headers})
+            .then( res => {
+
+                //console.log(res.data.data.categories);
+
+                dispatch({type:`CATEGORY_SYNC`, payload:res.data.data.categories})
+                dispatch({type:`PRODUCT_SYNC`, payload:res.data.data.menus})
+                
+            });
+        })
+    }
+}
 
 //register
 
@@ -154,6 +177,7 @@ export const actRegister = (user) => {
 
                     storeToken('jwtoken', res.data.data.token);
                     dispatch(userLogin(res.data.data.user));
+                    dispatch(fetchInit());
                     dispatch(loaded());
                 } 
             })
