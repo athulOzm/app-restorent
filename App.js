@@ -19,6 +19,10 @@ import LoadingScreen from './screens/LoadingScreen';
 import DashBoardDrawer from './_navigation/DashBoardDrawer';
 import Profile from './screens/Profile';
 import Register from './screens/Register';
+import Cart from './screens/Cart';
+import Order from './screens/Order';
+import Menutype from './screens/Menutype';
+
 
 const Stack = createStackNavigator();
 
@@ -97,6 +101,8 @@ class App extends React.Component{
           {this.props.isLogedin
             ? (<React.Fragment>
 
+
+
               <Stack.Screen 
                   name="DashBoard" 
                   component={DashBoardDrawer}
@@ -104,13 +110,38 @@ class App extends React.Component{
                     headerShown:false,
                   }} />
 
-              <Stack.Screen 
+<Stack.Screen 
+                name="Menutype" 
+                component={Menutype} 
+                options={{
+                  headerShown:false,
+                }}/>
+
+<Stack.Screen 
                 name="Profile" 
                 component={Profile} 
                 options={{
                   headerShown:false,
                 }}/>
+
+              <Stack.Screen 
+                name="Cart" 
+                component={Cart} 
+                options={{
+                  headerShown:false,
+                }}/>
+
+<Stack.Screen 
+                name="Order" 
+                component={Order} 
+                options={{
+                  headerShown:false,
+                }}/>
+
+
                 </React.Fragment>
+
+                
               
               ) 
             : (

@@ -52,6 +52,14 @@ const DashBoard = function(props, navigation) {
 
                 <View style={{paddingLeft:14,
                     paddingRight:16, backgroundColor:"#f98b2a", paddingTop:12}}>
+
+
+
+
+
+
+
+
                 
                 
                 <Item style={{backgroundColor:"#fad099", borderColor:"#dd7c14", borderBottomWidth:1,  borderRadius:8, paddingLeft:10, paddingRight:10}}>

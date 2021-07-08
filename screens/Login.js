@@ -15,7 +15,7 @@ class Login extends Component {
   
     this.state = {
        userName : '',
-       //password : ''
+       password : ''
     }
 
     this._loginHandler = this._loginHandler.bind(this);
@@ -26,12 +26,12 @@ class Login extends Component {
 
     //this.props.navigation.navigate('DashBoard');
 
-    const {userName} = this.state;
+    const {userName, password} = this.state;
 
 
      this.props.userLogin({
        userName : userName,
-       //password : password
+       password : password
      })
 
 
@@ -41,7 +41,7 @@ class Login extends Component {
 
   render(){
 
-    const {userName} = this.state;
+    const {userName, password} = this.state;
     const errors = this.props.errors;
 
     //console.log(errors);
@@ -93,16 +93,16 @@ class Login extends Component {
 
                   
     
-                  {/* <Item rounded style={css.inputs}>
-                    <Icon active name='person' style={css.icons}  />
+                  <Item rounded style={css.inputs}>
+                  <Icon active name='arrow-forward' style={css.icons}  />
                     <Input 
-                    secureTextEntry={true} 
-                    placeholderTextColor="#FFF"  
-                    style={{ color: "#fff" }} 
-                    placeholder='Password'
+                     
+                    placeholderTextColor="#333"  
+                    style={css.input} 
+                    placeholder='Code'
                     value={password}
                     onChangeText={(password) => {this.setState({password:password})}}/>
-                  </Item> */}
+                  </Item>
 
                 {/* <Item style={{marginTop:15, marginBottom:15}}>
                   <CheckBox checked={true} color="#333"/>
@@ -119,14 +119,14 @@ class Login extends Component {
                     <Text style={{textTransform:"capitalize"}}>Login</Text>
                   </Button>
 
-                  <Text 
+                  {/* <Text 
                     style={{color:"#777", marginTop:40,}}
                     
                     onPress={()=>{
                       this.props.navigation.navigate('Register')
                     }}>
                     Create an Account? <Text style={{fontWeight:"bold", color:"#333"}}> Signup</Text> 
-                  </Text>
+                  </Text> */}
 
 
 

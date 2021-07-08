@@ -48,11 +48,11 @@ export const createAuth = (user) => {
 
     return (dispatch) => {
 
-        dispatch(loading())
+        dispatch(loading());
 
         return Axios.post(`${apiserv}/userlogin`, {
             'memberid' : user.userName,
-            //'password' : user.password
+            'password' : user.password
         })
         .then(res => {
 

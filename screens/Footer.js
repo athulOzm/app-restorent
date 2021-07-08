@@ -45,20 +45,32 @@ const nub = useSelector(state => state.Cart.items).length
           
           { act == 'cart' ? 
 
-          <Button vertical>
+          <Button vertical onPress={()=> {
+            navigation.navigate('Cart');
+          }}>
             <Icon name="cart" style={css.icons}  style={{color:"#e9750f"}}/>
             <Text  style={css.t1}  style={{color:"#e9750f"}}>Cart</Text>
-          </Button> : <Button vertical>
+          </Button> : <Button vertical onPress={()=> {
+            navigation.navigate('Cart');
+          }}>
             <Icon name="cart" style={css.icons} />
             <Text  style={css.t1} >Cart </Text>
           </Button> }
 
 
-          {/* <Button vertical active> */}
-          <Button vertical>
+          { act == 'order' ? 
+
+          <Button vertical onPress={()=> {
+            navigation.navigate('Order');
+          }}>
+            <Icon active type="FontAwesome5" name="calendar" style={css.icons} style={{color:"#e9750f"}}/>
+            <Text style={css.t1} style={{color:"#e9750f"}}>Orders</Text>
+          </Button> : <Button vertical onPress={()=> {
+            navigation.navigate('Order');
+          }}>
             <Icon active type="FontAwesome5" name="calendar" style={css.icons}/>
             <Text style={css.t1}>Orders</Text>
-          </Button>
+          </Button>}
 
           { act == 'profile' ? 
           <Button vertical onPress={()=> {
