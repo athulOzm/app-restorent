@@ -36,7 +36,7 @@ class Register extends Component {
 
         return (
           <React.Fragment>
-          <StatusBar backgroundColor="#f98b2a" barStyle="light-content" />
+          <StatusBar backgroundColor="#49bdca" barStyle="light-content" />
         
     
           <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss()}}>
@@ -163,7 +163,7 @@ const css = StyleSheet.create({
     
   },
   banner:{
-    backgroundColor:"#f98b2a",
+    backgroundColor:"#49bdca",
     width:"100%",
     height:"20%",
     justifyContent:"center",
@@ -189,7 +189,7 @@ const css = StyleSheet.create({
     resizeMode: 'stretch'
   },
   icons:{
-    marginLeft:10,fontSize: 20, color: '#f0811f'
+    marginLeft:10,fontSize: 20, color: '#49bdca'
   },
   h1:{
     fontSize:20,
@@ -216,8 +216,8 @@ const css = StyleSheet.create({
   },
  
   button:{
-      marginTop:15, justifyContent:"center",width:320, color:"#f0811f", 
-      backgroundColor:"#e9750f", borderRadius:8, textTransform:"none"
+      marginTop:15, justifyContent:"center",width:320, color:"#49bdca", 
+      backgroundColor:"#49bdca", borderRadius:8, textTransform:"none"
   },
  
   button2:{

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text,  Icon, Footer, FooterTab, Button} from 'native-base';
+import { Text,  Icon, Footer, FooterTab, Button, View} from 'native-base';
 import { StyleSheet } from 'react-native';
 import { useSelector} from "react-redux";
 
@@ -14,7 +14,7 @@ const nub = useSelector(state => state.Cart.items).length
 
   
 {nub != 0 ? <Text style={{
-  backgroundColor:'#e9750f', position:'absolute', zIndex:999, padding:5, borderRadius:80, 
+  backgroundColor:'#49bdca', position:'absolute', zIndex:999, padding:5, borderRadius:80, 
   color:'#fff', width:30, height:30, textAlign:'center'
 }}>{nub}</Text>  : null}
 
@@ -27,8 +27,8 @@ const nub = useSelector(state => state.Cart.items).length
               <Button vertical onPress={()=> {
                 navigation.navigate('DashBoard');
               }}>
-                <Icon name="home" style={css.icons} style={{color:"#e9750f"}} />
-                <Text style={css.t1} style={{color:"#e9750f"}}>Home</Text>
+                <Icon name="home" style={css.icons} style={{color:"#49bdca"}} />
+                <Text style={css.t1} style={{color:"#49bdca"}}>Home</Text>
               </Button>
             :
               <Button vertical onPress={()=> {
@@ -43,19 +43,7 @@ const nub = useSelector(state => state.Cart.items).length
 
           
           
-          { act == 'cart' ? 
-
-          <Button vertical onPress={()=> {
-            navigation.navigate('Cart');
-          }}>
-            <Icon name="cart" style={css.icons}  style={{color:"#e9750f"}}/>
-            <Text  style={css.t1}  style={{color:"#e9750f"}}>Cart</Text>
-          </Button> : <Button vertical onPress={()=> {
-            navigation.navigate('Cart');
-          }}>
-            <Icon name="cart" style={css.icons} />
-            <Text  style={css.t1} >Cart </Text>
-          </Button> }
+          
 
 
           { act == 'order' ? 
@@ -63,8 +51,8 @@ const nub = useSelector(state => state.Cart.items).length
           <Button vertical onPress={()=> {
             navigation.navigate('Order');
           }}>
-            <Icon active type="FontAwesome5" name="calendar" style={css.icons} style={{color:"#e9750f"}}/>
-            <Text style={css.t1} style={{color:"#e9750f"}}>Orders</Text>
+            <Icon active type="FontAwesome5" name="calendar" style={css.icons} style={{color:"#49bdca"}}/>
+            <Text style={css.t1} style={{color:"#49bdca"}}>Orders</Text>
           </Button> : <Button vertical onPress={()=> {
             navigation.navigate('Order');
           }}>
@@ -76,8 +64,8 @@ const nub = useSelector(state => state.Cart.items).length
           <Button vertical onPress={()=> {
             navigation.navigate('Profile');
           }}>
-            <Icon name="person"  style={css.icons} style={{color:"#e9750f"}}/>
-            <Text style={css.t1} style={{color:"#e9750f"}}>Profile</Text>
+            <Icon name="person"  style={css.icons} style={{color:"#49bdca"}}/>
+            <Text style={css.t1} style={{color:"#49bdca"}}>Profile</Text>
           </Button> :
           <Button vertical onPress={()=> {
             navigation.navigate('Profile');
@@ -85,6 +73,18 @@ const nub = useSelector(state => state.Cart.items).length
             <Icon name="person"  style={css.icons}/>
             <Text style={css.t1}>Profile</Text>
           </Button>}
+
+          <View style={{backgroundColor:"#49bdca", margin:0, padding:0, marginTop:-10, }}>
+          
+
+          <Button vertical onPress={()=> {
+            navigation.navigate('Cart');
+          }}>
+            <Icon name="cart" style={css.icons}  style={{color:"#fff"}}/>
+            <Text  style={css.t1}  style={{color:"#fff", paddingBottom:10, textTransform:"none"}}>Checkout</Text>
+          </Button>  
+
+          </View>
 
 
         </FooterTab>

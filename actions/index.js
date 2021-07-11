@@ -52,7 +52,7 @@ export const createAuth = (user) => {
 
         return Axios.post(`${apiserv}/userlogin`, {
             'memberid' : user.userName,
-            'password' : user.password
+            'code' : user.password
         })
         .then(res => {
 
@@ -62,6 +62,8 @@ export const createAuth = (user) => {
             dispatch(loaded());
         })
         .catch(err => {
+
+            console.log(err);
             dispatch({type: `USER_AUTH_ERR`, payload: 'Invalid Member ID, Please try again.'});
             dispatch(loaded());
         });
@@ -94,6 +96,46 @@ export const fileUpload = data => {
             })
             
         })
+        //.catch(err => console.log(err))
+    }
+}
+
+
+export const checkout = data => {
+
+ 
+
+    return (dispatch) => {
+
+        const formData = {
+            cart : data
+            
+        }
+
+ 
+
+        getToken('jwtoken').then(res => {
+
+           
+
+            const headers = {
+                'content-type'  :   'Application/json',
+                'Authorization' :   `Bearer ${res}`
+            }
+
+            return Axios.post(`${apiserv}/checkoutapp`, formData, {headers})
+                .then(res => {
+
+                    console.log(res);
+
+
+                   dispatch({type:`ORDER_PLACE`});
+                    
+                })
+
+        })
+
+        
         //.catch(err => console.log(err))
     }
 }
@@ -139,6 +181,7 @@ const fetchInit = () => {
             .then( res => {
 
                 //console.log(res.data.data.categories);
+                console.log(res);
 
                 dispatch({type:`CATEGORY_SYNC`, payload:res.data.data.categories})
                 dispatch({type:`PRODUCT_SYNC`, payload:res.data.data.menus})
@@ -150,43 +193,43 @@ const fetchInit = () => {
 
 //register
 
-export const actRegister = (user) => {
+// export const actRegister = (user) => {
 
     
 
-    return (dispatch) => {
+//     return (dispatch) => {
 
-        dispatch(loading())
+//         dispatch(loading())
 
-        return Axios.post(`${apiserv}/registeruser`, {
-             name : user.user_name,
-             email:user.email,
-             memberid : user.memberid,
-             phone:user.phone
-        })
-            .then(res => {
+//         return Axios.post(`${apiserv}/registeruser`, {
+//              name : user.user_name,
+//              email:user.email,
+//              memberid : user.memberid,
+//              phone:user.phone
+//         })
+//             .then(res => {
 
-                //console.log(res);
+//                 //console.log(res);
 
-                if(res.data.status){
+//                 if(res.data.status){
 
-                    // dispatch(createAuth({
-                    //     memberid : user.memberid,
-                    //     //password : user.password
-                    // }))
+//                     // dispatch(createAuth({
+//                     //     memberid : user.memberid,
+//                     //     //password : user.password
+//                     // }))
 
-                    storeToken('jwtoken', res.data.data.token);
-                    dispatch(userLogin(res.data.data.user));
-                    dispatch(fetchInit());
-                    dispatch(loaded());
-                } 
-            })
-            .catch(err => {
-                //console.log(err);
-                dispatch(loaded());
+//                     storeToken('jwtoken', res.data.data.token);
+//                     dispatch(userLogin(res.data.data.user));
+//                     dispatch(fetchInit());
+//                     dispatch(loaded());
+//                 } 
+//             })
+//             .catch(err => {
+//                 //console.log(err);
+//                 dispatch(loaded());
                 
-            })
-    }
-}
+//             })
+//     }
+// }
 
  

@@ -7,19 +7,19 @@ import logo from '../assets/logo.png';
 export default function LoadingScreen() {
     return (
         <React.Fragment>
-        <StatusBar backgroundColor="#f98b2a" barStyle="light-content" />
+        <StatusBar backgroundColor="#49bdca" barStyle="light-content" />
             <View style={css.container}>
 
             <Image source={logo} style={{
-    width: 50, height: 50, marginBottom:0, marginBottom:50,
+    width: 110, height: 110, marginBottom:0, marginBottom:50,
     resizeMode: 'stretch'
   }} /> 
   <Text style={{
     fontSize:20,
-    color:"#333",
+    color:"#fff",
     fontWeight:"bold",
     marginTop:-45
-  }}>restoapp</Text>
+  }}>Al husn Club</Text>
                
                 <Spinner color='#fff' />
                 
@@ -38,7 +38,7 @@ const css = StyleSheet.create({
         flex: 1,
         alignItems:"center",
         justifyContent: "center",
-        backgroundColor:"#f98b2a"
+        backgroundColor:"#49bdca"
     }
 });
 

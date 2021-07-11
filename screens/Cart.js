@@ -1,151 +1,216 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 
 import {View, StyleSheet, FlatList, TouchableOpacity, StatusBar, ScrollView, ImageBackground } from 'react-native';
-import {List, ListItem, Text, 
-    Card, Thumbnail, Container, CardItem, Body, Button, Icon, Title, Segment, Item, Input } from 'native-base';
+import {List, ListItem, Text, Left, Right, Icon, Separator, Item, Input,  Button, 
+    Card, Thumbnail, Container, CardItem, Body, Content } from 'native-base';
 
-    import { connect } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
+
+import d1 from '../assets/d1.jpeg';
+import d2 from '../assets/d2.jpeg';
+
+import {imgpath} from '../_shared'
 import DHeader from '../shared/Header';
 import FooterC from './Footer';
 import bgImg from '../assets/border.png';
-import { Header } from 'react-native/Libraries/NewAppScreen';
+import { checkout } from '../actions';
  
 
 
+const Cart = function(props, navigation) {
 
-class Cart extends Component {
+    const dispatch = useDispatch();
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          selected: undefined
-        };
-      }
-    
+ 
 
-    
-    
-    render() {
+        const cartitems = useSelector(state => state.Cart.items)
+        const cart = useSelector(state => state.Cart)
+        const menutype = useSelector(state => state.Cart.menutype)
+        var edt = useSelector(state => state.Cart.time)
 
-        const carts = this.props.cart;
-        const products = this.props.products;
+        console.log(edt);
 
-        const active = products.map((product) => {
+        switch (menutype) {
+          case 2:
+            var mt = 'Breakfast';
+            break;
 
-            return carts.includes(product.id) ? product : ''
-        })
+          case 3:
+            var mt = 'Lunch';
+            break;
+        
+          default:
+            var mt = 'Dinner';
+            break;
+        }
+ 
+        var sum = 0;
 
-        //console.log(this.props.cart);
         return (
             <React.Fragment>
 
 
 
-            <DHeader navigation={this.props.navigation} title="" />
-            <StatusBar backgroundColor="#f98b2a" barStyle="light-content" />
+            <DHeader navigation={props.navigation} title="" />
+    
+            <StatusBar backgroundColor="#49bdca" barStyle="light-content" />
+
 
             <ScrollView style={{backgroundColor:"#fff"}}>
 
                 <View style={{paddingLeft:14,
-                    paddingRight:16, backgroundColor:"#f98b2a", paddingTop:12}}>
+                    paddingRight:16, backgroundColor:"#49bdca", paddingTop:12, display:"flex", alignItems:"center"}}>
                 
                 
-                <Text style={css.t3}> CART CHECKOUT</Text>
-                    
+                 <Text style={{color:"#fff", fontSize:16, fontWeight:"bold", marginBottom:2}}>ORDER ITEMS</Text>
+ 
                 </View>
 
                 <ImageBackground 
                 source={bgImg} 
                 style={css.border}
                 ></ImageBackground>
-
-
-
-            
-<Container style={{
-    padding:15
-}}>
-
-
-
  
-          <Card>
 
-{
-    carts.map((item) => {
 
-        //console.log(item);
 
-       return  <CardItem key={item}>
+
+ { cart.msg == null ?
+
+                
+            
+
+          <Content>
+
+              {
+               
+
+                  cartitems.map((product) => {
+
+                    var tp = parseFloat(product.price * product.qty).toFixed(3);
+                    sum += Number(tp);
+
+
+          return <List key={product.id}>
+            <ListItem thumbnail>
+              <Left>
+             { product.cover != null ?
+       <Thumbnail square source={{uri: `${imgpath}/${product.cover}`}} /> :
+     
+       <Thumbnail square source={d2} />
+
+
+     }
+ 
+              </Left>
               <Body>
-                <Text>
-                   
-                   Product Name here <Text style={{
-                       right:10, backgroundColor:"#333", color:"#fff", width:30
-                   }}>1</Text>
-                </Text>
+                <Text>{product.name}</Text>
+                <Text note numberOfLines={1}>RO : {product.price} x {product.qty}</Text>
               </Body>
-            </CardItem>
+              <Right>
+                
+                <View style={{display:"flex", flexDirection:"row"}}>
+                      <Button  transparent
+                      onPress={()=> {
 
-    })
+                        product.qty == 1 ? 
+
+                        dispatch({
+                          type: "CART_REM", payload:product.id
+                        }) : 
+
+                        dispatch({
+                          type: "CART_ADD2", payload:{'id':product.id, 'name':product.name, 'qty':product.qty - 1, 'cover':product.cover, 'price':product.price}
+                        })
+                      }}>
+
+                         
+                        <Icon 
+                          style={{color:"#333", fontSize:17, color:"#49bdca", fontWeight:"100"}} active 
+                          type="FontAwesome5" 
+                          name="minus"/>
+                      </Button>
+                      <Text style={{marginLeft:15, marginRight:15, backgroundColor:"#fff", color:"#333", padding:10}}>{product.qty}</Text>
+                      <Button  transparent
+                      onPress={()=> {
+                        dispatch({
+                          type: "CART_ADD2", payload:{'id':product.id, 'name':product.name, 'qty':product.qty + 1, 'cover':product.cover, 'price':product.price}
+                        })
+                      }}>
+                        <Icon 
+                          style={{color:"#333", fontSize:17, color:"#49bdca", fontWeight:"100"}} active 
+                          type="FontAwesome5" 
+                          name="plus"/>
+                      </Button>
+                    </View>
+             
+              </Right>
+            </ListItem>
+          </List>
+
+
+})
 }
+
+
+
+<View style={{ paddingTop:12, display:"flex", alignItems:"center"}}>
+                
+                
+                 <Text style={{color:"#555", fontSize:16, fontWeight:"bold", marginBottom:10, marginTop:10}}>ORDER DETAILS</Text>
+
+                 <Text style={{color:"#333", fontSize:14, fontWeight:"600"}}>Menu Type </Text>
+                 <Text style={css.b1}>{mt}</Text>
+
+                 <Text style={{color:"#333", fontSize:14, fontWeight:"600", marginTop:10}}>Expected Delivery Time</Text>
+                 <Text style={css.b1}>{edt.toUTCString()}</Text>
+
+                 <Text style={{color:"#333", fontSize:14, fontWeight:"600", marginTop:10}}>Total Amount</Text>
+                 <Text style={css.b1}>{sum.toFixed(3)}</Text>
+
+                </View>
             
 
-<Item>
-              <Input placeholder="Expected Time" />
-              
-            </Item>
+                <Button 
+                  onPress={()=> {
+                    dispatch(checkout(cart))
+                  }}
+                    style={css.button} 
+                    rounded
+                     >
+                    <Text style={{textTransform:"capitalize"}} >Place Order</Text>
+                  </Button>
 
-          </Card>
-     
+          </Content> 
 
 
-     
+: <View style={{display:"flex", marginTop:150, alignItems:"center", justifyContent:"center"}}><Text style={{color:"#49bdca", fontSize:19, fontWeight:"bold", marginBottom:10, marginTop:10}}>{cart.msg}</Text>
 
+<Text style={{color:"#777", fontSize:14, marginBottom:10, marginTop:10}}>Cancel Order </Text>
 
-
-
-<Button block warning>
-            <Text>Checkout</Text>
-          </Button>
-
-</Container>
-          
+</View>}
     
- 
-         
+          
             
                 
   
             </ScrollView>
 
 
-            <FooterC navigation={this.props.navigation} act="cart"/>
+            <FooterC navigation={props.navigation} act="cart"/>
         </React.Fragment>
         )
-    }
+     
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        //logout : () => dispatch(userLogout())
-    }
-}
-
-const mapStateToProps = (state) => {
-
-    return {
-        cart : state.Cart.items,
-        products : state.Product.items
-    }
-}
+ 
 
 
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default  Cart;
 
 
 
@@ -156,11 +221,15 @@ const css = StyleSheet.create({
         resizeMode: 'cover'
       } ,
       banner:{
-        backgroundColor:"#f98b2a",
+        backgroundColor:"#49bdca",
         width:"100%",
         height:100,
         justifyContent:"center",
         alignItems:"center",
+      },
+      b1 : {
+        fontWeight:"bold",
+        color:"#49bdca", fontSize:16
       },
       border : {
         backgroundColor:"#fff",
@@ -177,13 +246,16 @@ const css = StyleSheet.create({
         color:"#444", marginTop:5
     },t3:{
         width:"100%", alignItems:"center", fontSize:19, textAlign:"center", fontWeight:'bold',
-        color:"#fff", marginTop:5
+        color:"#444", marginTop:5
     },
       box :{
         display:"flex", flexDirection:"row", 
         alignItems:"flex-start", justifyContent:"center", height:"auto"
         
         
-      }
+      }, button:{
+        marginTop:15, justifyContent:"center",width:"90%", color:"#49bdca", 
+        backgroundColor:"#49bdca", borderRadius:8, textTransform:"none",  margin:"auto", marginLeft:"5%", marginBottom:60
+    },
 
 });

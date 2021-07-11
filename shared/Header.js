@@ -5,7 +5,7 @@ import logo from '../assets/logo.png';
 export default function DHeader({navigation, title}) {
     return (
  
-        <Header style={{backgroundColor:"#f98b2a",}}>
+        <Header style={{backgroundColor:"#49bdca",}}>
           <Left>
           <Button transparent style={{marginLeft:-10}}>
           <Icon name='menu' style={{fontSize: 40, }} onPress={() => navigation.openDrawer()} />

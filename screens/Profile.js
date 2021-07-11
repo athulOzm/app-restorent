@@ -36,21 +36,21 @@ const Profile = function(props, navigation) {
 
 
             <DHeader navigation={props.navigation} title="" />
-            <StatusBar backgroundColor="#f98b2a" barStyle="light-content" />
+            <StatusBar backgroundColor="#49bdca" barStyle="light-content" />
 
             <ScrollView style={{backgroundColor:"#fff"}}>
 
-                <View style={{paddingLeft:14,
-                    paddingRight:16, backgroundColor:"#f98b2a", paddingTop:12}}>
+                {/* <View style={{paddingLeft:14,
+                    paddingRight:16, backgroundColor:"#49bdca", paddingTop:12}}>
                 
                 
                 <Item style={{backgroundColor:"#fad099", borderColor:"#dd7c14", borderBottomWidth:1,  borderRadius:8, paddingLeft:10, paddingRight:10}}>
             <Icon name="ios-search" />
             <Input placeholder="Search" />
-            {/* <Icon name="ios-people" /> */}
+            
           </Item>
                     
-                </View>
+                </View> */}
             
 
           
@@ -80,10 +80,18 @@ flexDirection:'column'
 <Text note>{profile.position}</Text>
 
 
-<Text style={css.t2}>Email ID {profile.email}</Text>
+<Text style={css.t2}>Service ID {profile.memberid}</Text>
 <Text style={css.t2}>Phone {profile.phone}</Text>
-<Text style={css.t2}>ID : {profile.memberid}</Text>
-<Text style={css.t2}>Account Balance 0</Text>
+<Text style={css.t2}>Rank : Fireman</Text>
+<Text style={css.t2}>Member Type : Cash/ Credit</Text>
+
+<Button 
+                    style={css.button} 
+                    rounded
+                    >
+                    <Text style={{textTransform:"capitalize"}}> View Statement</Text>
+                  </Button>
+ 
 
 
 </View>
@@ -133,7 +141,7 @@ const css = StyleSheet.create({
         resizeMode: 'cover'
       } ,
       banner:{
-        backgroundColor:"#f98b2a",
+        backgroundColor:"#49bdca",
         width:"100%",
         height:100,
         justifyContent:"center",
@@ -161,6 +169,9 @@ const css = StyleSheet.create({
         alignItems:"flex-start", justifyContent:"center", height:"auto"
         
         
-      }
+      },button:{
+        marginTop:35, justifyContent:"center",width:"90%", color:"#49bdca", 
+        backgroundColor:"#49bdca", borderRadius:8, textTransform:"none",  margin:"auto", marginLeft:"5%"
+    }
 
 });

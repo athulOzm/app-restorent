@@ -48,7 +48,7 @@ class Login extends Component {
 
     return (
       <React.Fragment>
-      <StatusBar backgroundColor="#f98b2a" barStyle="light-content" />
+      <StatusBar backgroundColor="#49bdca" barStyle="light-content" />
     
 
       <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss()}}>
@@ -58,7 +58,7 @@ class Login extends Component {
 
           <View style={css.banner}>
               <Image source={logo} style={css.logo} /> 
-              <Text style={css.h1}>restoapp</Text>
+              <Text style={css.h1}>Al husn Club</Text>
           </View>
 
 
@@ -159,7 +159,7 @@ const css = StyleSheet.create({
     
   },
   banner:{
-    backgroundColor:"#f98b2a",
+    backgroundColor:"#49bdca",
     width:"100%",
     height:"30%",
     justifyContent:"center",
@@ -180,12 +180,13 @@ const css = StyleSheet.create({
   head1:{
     fontSize:17
   },
+
   logo:{
-    width: 80, height: 80, marginBottom:20, marginBottom:50,
+    width: 110, height: 110, marginBottom:20, marginBottom:50,
     resizeMode: 'stretch'
   },
   icons:{
-    marginLeft:10,fontSize: 20, color: '#f0811f'
+    marginLeft:10,fontSize: 20, color: '#49bdca'
   },
   h1:{
     fontSize:20,
@@ -212,8 +213,8 @@ const css = StyleSheet.create({
   },
  
   button:{
-      marginTop:15, justifyContent:"center",width:320, color:"#f0811f", 
-      backgroundColor:"#e9750f", borderRadius:8, textTransform:"none"
+      marginTop:15, justifyContent:"center",width:320, color:"#49bdca", 
+      backgroundColor:"#49bdca", borderRadius:8, textTransform:"none"
   },
  
   button2:{

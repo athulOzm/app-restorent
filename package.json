@@ -1,4 +1,5 @@
 {
+  "main": "index.js",
   "name": "Foodstore",
   "version": "0.0.1",
   "private": true,
@@ -19,6 +20,7 @@
     "native-base": "^2.15.2",
     "react": "17.0.1",
     "react-native": "0.64.0",
+    "react-native-date-picker": "^3.3.2",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-reanimated": "^2.1.0",
     "react-native-safe-area-context": "^3.2.0",
